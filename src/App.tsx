@@ -1,7 +1,17 @@
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import {Redirect, Route} from 'react-router-dom';
+import {
+    IonApp,
+    IonIcon,
+    IonLabel,
+    IonRouterOutlet,
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
+    setupIonicReact
+} from '@ionic/react';
+import {IonReactRouter} from '@ionic/react-router';
+import QuestsPage from './pages/QuestsPage';
+import ProfilePage from './pages/ProfilePage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,22 +31,42 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import {personOutline, searchOutline} from "ionicons/icons";
+import QuestCardPage from "./pages/QuestCardPage";
 
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonTabs>
+                <IonRouterOutlet>
+                    <Route exact path="/">
+                        <Redirect to="/quests"/>
+                    </Route>
+                    <Route exact path="/quests">
+                        <QuestsPage />
+                    </Route>
+                    <Route exact path="/quest-card">
+                        <QuestCardPage />
+                    </Route>
+                    <Route exact path="/profile">
+                        <ProfilePage />
+                    </Route>
+                </IonRouterOutlet>
+                <IonTabBar slot="bottom">
+                    <IonTabButton tab="quests" href="/quests">
+                        <IonIcon icon={searchOutline} />
+                        <IonLabel>Квесты</IonLabel>
+                    </IonTabButton>
+                    <IonTabButton tab="profile" href="/profile">
+                        <IonIcon icon={personOutline} />
+                        <IonLabel>Профиль</IonLabel>
+                    </IonTabButton>
+                </IonTabBar>
+            </IonTabs>
+        </IonReactRouter>
+    </IonApp>
 );
 
 export default App;
