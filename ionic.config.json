@@ -1,7 +1,0 @@
-{
-  "name": "quest",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
