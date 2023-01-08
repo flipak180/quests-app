@@ -1,5 +1,7 @@
 {
   "name": "quest",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
